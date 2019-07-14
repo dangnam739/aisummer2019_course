@@ -24,5 +24,5 @@ print(input_age)
 x = 3
 y = 2
 print(x // y)
-print(x ** y)
+print(x ** y) #x mu y
 print(x / y)

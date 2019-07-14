@@ -1,2 +1,1 @@
-# Python_Begin
- Code by Python when I start beginning.
+Mot so ham co san trong <import> math:

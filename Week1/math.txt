@@ -1,0 +1,69 @@
+MOT SO HAM CO SAN TRONG import MATH
+
+
+math.ceil(x) : return int, tra ve so nguyen nho nhat ma ko nho hon x
+	math.ceil(100.1) = 101
+
+math.copysign(x,y) : return float, tra ve gia tri float co do lon la tuyet doi cua x nhung voi dau cua y.
+	math.copysign(1,-2) = -1
+
+math.fabs(x) : return gia tri tuyet doi cua x
+
+math.factorial(x) : return int ( x! ) 
+
+math.floor(x) : return so nguyen <= x
+
+math.fmod(x,y) : return phan du cua y/x ( x = i*y + f, i la int, fmod--> f)
+
+math.frexp(x) : return phan dinh tri va nguyen so nguyen duoc tro toi boi exponent
+ 
+math.fsum(iterable) : return tong cua cac gia tri voi so lan lap tuong ung
+
+math.gcd(a,b) : return UCLN(a,b)
+
+math.isclose(a,b,*, rel_tol=1e-09, abc_tol=0.0) : return True neu gia tri a, b gan nhau va Flase trong trh nguoc lai
+
+math.isfinite(x) : return True neu x ko phai vo cuc. (0.0 duoc coi la huu han)
+
+math.isinf(x) : return True neu x la duong vo cuc hoac am vo cuc
+
+math.isnan(x) : return True neu x la NaN (ko phai so)
+
+math.ldexp(x,i) : return x*(2**i) //nghich dao cua ham fexp()
+
+math.modf(x) : return phan phan so va phan nguyen cua x
+
+math.remaider(x,y) : tra ve phan con lai kieu IEEE 754  cua x doi voi y
+
+math.trunc(x) : return gia tri lam tron so thap phan thanh so nguyen bang cach bo di phan thap phan
+
+
+
+math.exp(x) : return e^x = pow(math.e, x) = math.e ** x
+
+math.expm1(x) : return e^x - 1
+
+math.log(x[,base]) : return log[base](x) = log(x)/log(base)
+
+math.log1p(x) : return log(1+x)
+
+math.log2(x) : return log(x, 2)
+
+math.log10(x) : return log(x,10)
+
+math.pow(x,y) : return x^y = x**y
+
+math.sqrt(x) : return CBH(x)
+
+
+math.acos(x) : return arccos(x)
+
+math.asin(x) : return arcsin(x)
+
+math.atan(x) : return arctan(x)
+
+math.atan2(y,x) : return atan(y/x)
+
+
+
+
