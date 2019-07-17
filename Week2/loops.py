@@ -1,4 +1,5 @@
 from __future__ import print_function
+import random
 
 print("==============While Loop============")
 #                   While Loop
@@ -11,6 +12,16 @@ count = 0
 while count < 3:
     count = count + 1
     print('Hello World !')
+
+#while_True_break
+while True:
+    num = random.randint(1, 20)
+    print('So sinh ra co gia tri la %d' % num)
+
+    if num == 18:
+        break
+print('Da thoat khoi vong lap while')
+
 
 print("==============For Loop============")
 #                   For Loop
@@ -68,7 +79,7 @@ for i in range(2, 10):
     print(i)
     print(range(i))
 
-print"======Loop Control Statements========")
+print("======Loop Control Statements========")
 
 # Continue Statement ->It returns the control to the beginning of the loop
 #print all letter except 'a' and 't'
