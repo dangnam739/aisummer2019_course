@@ -1,0 +1,14 @@
+Stereo matching là một lĩnh vực nghiên cứu trong computer vision, nhằm tính khoảng cách từ camera đến các object. Stereo matching dùng hệ thống gồm 2 camera (gọi là stereo camera) để bắt trước cặp mắt của con người trong việc tính khoảng cách.
+
+Thông tin về chiều sâu (hay khoảng cách tới các object) được ứng dụng rộng rãi trong xây dựng mô hình 3D, xe tự hành, và cho cả các ứng dụng khác trong computer visioin như tracking, detection, hay segmentation.
+
+Stereo camera được dùng để chụp các ảnh trái và phải, gọi là cặp ảnh stereo. Cặp ảnh này chính là input cho thuật toán stereo matching để tìm depth map cho ảnh trái và ảnh phải. Depth map là một ảnh; trong đó giá trị của mỗi pixel là giá trị khoảng cách. Khi thiết lập hệ thống camera (gồm calibration và rectification) xong, chúng ta có thể ánh xạ pixel trong ảnh đến các vị trị trong không gian thực. Hình sau mô tả các bước cần thiết lập cho hệt thống stereo matching. Kết quả của bước stereo matching là disparity map, cho biết thông tin disparity cho tất cả pixel.
+
+Ở bài đầu tiên học về stereo matching này, các bạn chỉ cần nhớ vài ý chính sau
+
+– Stereo matching dùng stereo camera, là hệ thống gồm 2 camera.
+– Depth map chứa khoảng cách cho mọi pixel của ảnh input.
+– Stereo matching hiện được ứng dụng rộng rãi, và vẫn được tiếp tục nghiên cứu.
+– Khi tìm hiểu về stereo matching, bạn sẽ gặp thuật ngữ disparity map. Disparity map chính là dạng ‘dữ liệu thô’ của depth map. Hai map này có thể chuyển đổi qua lại bằng một công thức đơn giản. Ở bài này, các bạn có thể coi 2 map này là như nhau.
+
+Phát biểu bài toán: cho 2 ảnh trái và ảnh phải, với mỗi pixel p bên ảnh trái, tìm pixel tương ứng q bên ảnh phải. Biết rằng tọa độ dòng của 2 pixel bằng nhau (yp=yq) và tọa độ cột của q lệch trái tối đa là D (xq=xp–d với d∈[0,D]). Hình sau minh họa hai pixel tương ứng giữa cặp ảnh trái và phải.

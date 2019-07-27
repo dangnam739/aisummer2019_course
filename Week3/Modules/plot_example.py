@@ -41,16 +41,21 @@ data_dtanh = tanh_derivative(data)
 # plt.show()
 
 #chinh lai 4 truc
-fig, ax = plt.subplot(figsize=(10, 5))
-ax.spines['left'].set_position('center')
-ax.spines['bottom'].set_position('center')
-ax.spines['right'].set_color('none')
-ax.spines['top'].set_color('none')
-ax.xaxis.set_ticks_position('bottom')
-ax.yaxis.set_ticks_position('left')
+# fig, ax = plt.subplot(figsize=(10, 5))
+# ax.spines['left'].set_position('center')
+# ax.spines['bottom'].set_position('center')
+# ax.spines['right'].set_color('none')
+# ax.spines['top'].set_color('none')
+# ax.xaxis.set_ticks_position('bottom')
+# ax.yaxis.set_ticks_position('left')
 
-#tao va hien thi bieu do
-ax.plot(data, data_tanh, color='#d35400', linewidth=3, label='tanh')
-ax.plot(data, data_dtanh, color='#1abd15', linewidth=3, label='derivative')
-ax.legend(loc='upper left', frameon=False)
-fig.show()
+# #tao va hien thi bieu do
+# ax.plot(data, data_tanh, color='#d35400', linewidth=3, label='tanh')
+# ax.plot(data, data_dtanh, color='#1abd15', linewidth=3, label='derivative')
+# ax.legend(loc='upper left', frameon=False)
+# fig.show()
+
+plt.plot(data, data_tanh, color="#d35400", linewidth=3, label="tanh")
+plt.plot(data, data_dtanh, color="#1abd15", linewidth=3, label="derivative")
+plt.legend(loc="upper left", frameon=False)
+plt.show()
