@@ -1,4 +1,5 @@
 #Phuong phap dua vao pixel
+
 import numpy as np
 from PIL import Image
 
@@ -42,3 +43,5 @@ def stereo_matching(left_img, right_img, disparity_range):
 if __name__ == '__main__':
     disparity_range = 16  #cho cap anh Tsukuba
     stereo_matching('left.png', 'right.png', disparity_range)
+
+
