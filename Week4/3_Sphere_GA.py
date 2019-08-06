@@ -109,5 +109,3 @@ for i in range(n_generations):
 y = [i for i in range(n_generations)]
 plt.plot(y, losses)
 plt.show()
-
-

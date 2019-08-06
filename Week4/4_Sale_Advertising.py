@@ -1,56 +1,72 @@
-# '''
-# Su phan bo cua du lieu  xap xi mot doan thang.
-# Gia su phan bo du lieu co dang price = a*area + b trong do a, b la 2 gia tri can tim
-# '''
+'''
+Mo ta du lieu: gom 200 mau, moi mau gom 3 dac trung gom: so tien quang cao tren TV, radio, newspaper.
+Gia tri sale(thuc) duoc cung cap cho moi mau.
+
+Idea:
+    Gia su bo du lieu nau co dang phan bo theo pt:
+        sale = c1*TV + c2*Radio + c3*Newspaper + c4 (1)
+    Do do, ta se dung GA de tim ra cac gia tri tham so c1..4 tot nhat cho bo du lieu advertising.
+
+Thong tin cho GA:
+    -Chieu dai cua chromosome = 4
+    -Gen co kieu du lieu: floating-point
+    -Mien gia tri ci >= 0
+
+De thuan tien, ta viet lai pt (1):
+    sale = c1*TV + c2*Radio + c3*Newspaper + c4*1.0 (2)
+    --> them cot gia tri 1.0 vao mau de so luong feature = 4 = so luong tham so
+'''
 
 import random
 import matplotlib.pyplot as plt
 import numpy as np
 
-n = 2  # size of indivudal (chromosome)
-m = 100  # size of population
-n_generations = 100  # number of generations
-losses = []  #
+n = 4
+m = 200
+n_generation = 2000
+losses = []
 
-# Load data
+#Load data function
 def load_data():
-    file = open('data.csv', 'r')
+    file = open('advertising.csv', 'r')
 
     lines = file.readlines()
 
-    areas = []
+    features = []
     prices = []
 
-    for i in range(10):
+    for i in range(1, 201):
         temp = lines[i].split(',')
-        areas.append(float(temp[0]))
-        prices.append(float(temp[1]))
+        feature = [float(s.strip()) for s in temp[: len(temp) - 1]]
+        feature.append(1.0)
+        features.append(feature)
+        prices.append(float(temp[-1]))
 
     file.close()
-    return areas, prices
+
+    return features, prices
 
 #load data
-areas, prices = load_data()
+features, prices = load_data()
+# for i in range(10):
+#     print(features[i])
+#     print(prices[i])
 
-def generate_random_value(bound=100):
+def generate_random_value(bound = 100):
     return (random.random()) * bound
 
-
 def compute_loss(individual):
-    a = individual[0]
-    b = individual[1]
+    estimated_prices = []
+    for feature in features:
+        estimated_price = sum(c * x for x, c in zip(feature, individual))
+        estimated_prices.append(estimated_price)
 
-    estimated_prices = [a * x + b for x in areas]
-    estimated_prices = [abs(x) for x in estimated_prices]
-
-    losses = [abs(y_est - y_gt)  for y_est, y_gt in zip(estimated_prices, prices)]
+    losses = [abs(y_est - y_gt) for y_est, y_gt in zip(estimated_prices, prices)]
 
     return sum(losses)
 
-
 def compute_fitness(individual):
     loss = compute_loss(individual)
-    #loss + 1 de tranh trh mau so = 0
     fitness = 1 / (loss + 1)
     return fitness
 
@@ -104,7 +120,7 @@ def create_new_population(old_population, elitism=2, gen=1):
 
     if gen % 1 == 0:
         losses.append(compute_loss(sorted_population[m - 1]))
-        print('Best loss:', compute_loss(sorted_population[m - 1]))
+        # print('Best loss:', compute_loss(sorted_population[m - 1]))
 
     new_population = []
     while len(new_population) < m - elitism:
@@ -128,44 +144,31 @@ def create_new_population(old_population, elitism=2, gen=1):
     return new_population
 
 
+
 population = [creat_individual() for _ in range(m)]
-
-print('Old Population')
-for i in population:
-    print(i)
-
-for i in range(n_generations):
+for i in range(n_generation):
     population = create_new_population(population, 2, i)
 
-print('New Population')
-for i in population:
-    print(i)
+# print("Show loss: ")
+# plt.plot(losses[:200], c='green')
+# plt.xlabel('Generations')
+# plt.ylabel('Losses')
+# plt.show()
 
-print('Show loss:')
-y = [i for i in range(n_generations)]
-plt.plot(y, losses)
+sorted_population = sorted(population, key=compute_fitness)
+print(sorted_population[m - 1])
+individual = sorted_population[m - 1]
+
+estimated_prices = []
+for feature in features:
+    estimated_price = sum(c * x for x, c in zip(feature, individual))
+    estimated_prices.append(estimated_price)
+
+losses = losses = [abs(y_est - y_gt)
+                   for y_est, y_gt in zip(estimated_prices, prices)]
+print(sum(losses))
+
+fig, ax = plt.subplots(figsize=(10, 6))
+plt.plot(prices, c='green')
+plt.plot(estimated_prices, c='blue')
 plt.show()
-
-print('\nPredicted Price :')
-predict = population[m - 1] #Gia tri a, b duoc du doan
-print(predict)
-print('\nPredicted Price for hourse\'s 800 m^2 area: ')
-y_result = predict[0] * 8 + predict[1]
-print(y_result)
-
-
-def plot_result(areas, prices, predict):
-    a = predict[0]
-    b = predict[1]
-    x = np.linspace(1, 9)
-    y = a*x + b
-    fig = plt.figure('Show dataFrame')
-    ax = fig.add_subplot(111)
-    plt.xlabel('Area of house (x100m^2)')
-    plt.ylabel('Price of house')
-    plt.plot(areas, prices, 'o')
-    plt.plot(x, y)
-    plt.show()
-
-
-plot_result(areas, prices, predict)
