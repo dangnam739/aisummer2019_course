@@ -1,0 +1,44 @@
+Link: https://aivietnam.ai/courses/aisummer2019/lessons/genetic-algorithm/
+
+Giai thuat GA (di truyen) la giai thuat tim kiem dua vao ngau nhien
+phu hop voi cac bai toan NP-hard. GA duoc sd rong rai trong tat ca cac
+linh vuc de toi uu gia tri cho bo tham so cua mot he thong hay phuong phap
+
+Sd GA de giai quyet bai toan one-max, dung cac thuat ngu ben di truyen de mo ta
+cac thanh phan va hanh vi. GA dung chromosome(ca the) de chi mot the hien cho
+khong gian loi giai. Moi vi tri trong chromosome duoc goi la gen, moi chuoi chromosome
+co n gen.
+
+GA gom 3 buoc chinh la: selection(chon loc), crossover(lai ghep) va motation(dot bien)
+
+
+1. Population initialization(Khoi tao quan the) nham tao ngau nhien quan the ban dau
+Khoi tao quan the dua vao thong tin so ca the m va so gen moi ca the n
+
+2. Evaluation:
+GA sd mot ham duoc cung cap san de tinh fitness cho tung ca the
+
+3. Selection :
+Dua vao gia tri cua fitness cua moi ca the va se chon ra
+mot tap hop cac ca the co fitness tot nhat, Nguyen tac chon la ca the nao co
+fitness cang cao thi kha nang ca the do duoc chon cang nhieu.
+Phuong phap sd: Binary Selection: Lay ngau nhien hai ca the trong quan the,
+ca the nao co fitness tot hon thi duoc chon
+Binary selection:
+    1. Sap xep cac ca the theo thu tu tang dan voi tieu chi fitness
+    2. Sinh ra 2 so ngau nhien i1, i2 thuoc [0,m-1] roi chon ca the co index lon hon
+
+4. Crossover(lai ghep):
+2 ca the co the trao doi gen voi nhau. Ta sd Binary Crossover
+de lai tao giua 2 ca the.
+Binary Crossover:
+    1. Cho truoc XS thuc hien crossover cho mot gen Rct = 0.9
+    2. Sinh ra mot boolean vector vct co do dai n, moi phan tu chua False or True
+        True: mot vi tri index thuc hien viec trao doi gen o vi tri do giua hai ca the
+
+5. Mutation(Dot bien)
+Gen can dot bien nhan mot gia tri ngau nhien trong mien gia tri. Tuong tu crossover, mutation
+cung can mot boolean vector vmt de xd nhung gen nao can dot bien. Vector vmt duoc sinh ra ngau nhien
+theo mot kha nang mutation rmt cho truoc
+
+
